@@ -65,6 +65,22 @@ const generateID=()=>
 app.post('/api/persons',(requests,response)=>{
   const person= requests.body
   person.id= generateID()
+  const ifAlreadyExists =persons.find(n=>n.name === person.name)
+  if(!person.name ){
+    return response.status(400).json({
+      error: "Name is missing"
+    })
+  } 
+  else if(!person.number){
+    return response.status(400).json({
+      error: "Number is missing"
+    }) 
+  }
+  else if(ifAlreadyExists){
+    return response.status(400).json({
+      error: "Name must be unique"
+    }) 
+  } 
   persons=persons.concat(person)
   response.json(person)
 })

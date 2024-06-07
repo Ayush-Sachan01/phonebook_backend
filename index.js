@@ -1,4 +1,5 @@
 const express = require('express');
+const morgan = require('morgan');
 const app = express();
 app.use(express.json());
 let persons=[
@@ -24,6 +25,22 @@ let persons=[
     }
 ]
 
+
+morgan.token('data', function (req) { return JSON.stringify(req.body) })
+
+const logger= (tokens,req,res)=>{
+  return [
+    tokens.method(req, res),
+    tokens.url(req, res),
+    tokens.status(req, res),
+    tokens.res(req, res, 'content-length'), '-',
+    tokens['response-time'](req, res), 'ms',
+    tokens.data(req)
+  ].join(' ')
+}
+
+
+app.use(morgan(logger));
 
 app.get('/api/persons',(request,response)=>{
       console.log(persons)
@@ -84,6 +101,8 @@ app.post('/api/persons',(requests,response)=>{
   persons=persons.concat(person)
   response.json(person)
 })
+
+
 
 const PORT= 3001
 app.listen(PORT,()=>{

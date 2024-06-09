@@ -41,6 +41,7 @@ const logger= (tokens,req,res)=>{
   ].join(' ')
 }
 
+app.use(express.static('dist'))
 app.use(morgan(logger));
 
 app.get('/api/persons',(request,response)=>{

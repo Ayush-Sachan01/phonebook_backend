@@ -1,0 +1,7 @@
+POST https://phonebook-backend-4109.onrender.com/api/persons
+Content-Type: application/json
+
+{
+    "name": "Pratyush",
+    "number":"235907289590"
+}

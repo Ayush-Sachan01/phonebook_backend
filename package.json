@@ -11,9 +11,10 @@
   "author": "Ayush",
   "license": "MIT",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.19.2",
-    "morgan": "^1.10.0",
-    "cors": "^2.8.5"
+    "mongoose": "^8.4.1",
+    "morgan": "^1.10.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.3"
